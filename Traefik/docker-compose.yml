@@ -1,7 +1,6 @@
-version: "2.2"
+version: "3.2"
 
 services:
-
   traefik:
     image: "traefik:v2.2"
     container_name: "traefik"
@@ -21,7 +20,8 @@ services:
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      
+    restart: always
+
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -29,12 +29,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
     restart: always
-
-  spark:
-    image: "alexandersarson/sparkjava"
-    scale: 2
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.CHANGEME.rule=Host(`example.domain.com`)"
-      - "traefik.http.routers.CHANGEME.entrypoints=websecure"
-      - "traefik.http.routers.CHANGEME.tls.certresolver=myresolver"

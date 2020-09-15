@@ -1,10 +1,35 @@
-# Opsætning af containers
-1. Under containeren traefik i labels /docker/docker-compose-yml ændre mailen adressen EXAMPLE@EXAMPLE.com til en anden ellers vil automatisk tls certificate ikke virke
-2. Der er en eksempel på i docker-compose.yml filen, hvordan et load balancing scenarie med automatisk opsætning af reverse proxy og tls certificate vil se ud.
-Man kan fjerne scale: 2 fra container, hvis man ikke vil load balance.
-BEMÆRK at scale: kun virker i docker-compose v2.2, så hvis man vil bruge en nyere version skal denne fjernes fra filen.
-3. for at lave en ny container skal man blot kopiere eksemplet fra docker-compose filen og ændre domainet, samt hvor der står CHANGEME.
-4. Jeg anbefaler at for hver ny service/container man vil have kørende at man laver en compose fil, kopiere den op på dropletten under sin egen folder, hvorefter der skal køres docker-compose up -d.
-Traefik finder selv ud af at opdage containeren, trække et certificat og dirigere trafikken hen til containeren med de informationer man har sat på labels.
-BEMÆRK at det er vigtigt at man i sin dockerfil bruger EXPOSE ellers ved traefik ikke hvilken port den skal sende trafikken hen til.
-Man kan også bruge ports under container i docker-compose, hvis man har glemt EXPOSE i dockerfile
+# Opsætning af droplet
+1. Opret en konto hos digitalocean.com og log in
+2. Tryk på Droplets i fanen i venstre side
+3. Tryk på Create Droplet
+4. Tryk på fanen Marketplace
+5. Søg efter og vælg Docker
+6. Tjek at Basic plan er valgt
+7. Vælg den mindste droplet - 5$/mo
+8. Vælg Frankfurt datacenter
+9. Tryk på New SSH Key
+10. Kopier public key info ind
+11. Tryk Add SSH Key
+12. Tjek at den nye SSH Key er valgt
+13. lad resten af indstillingerne være standard og scroll ned til bunden og tryk Create Droplet
+
+# Opsætning af domain
+
+
+# Opsætning af docker
+1. Clone dette repo
+2. Log in på droplet via ssh
+3. Kør kommando'en "docker network create dev"
+4. Opret en mappe som hedder docker under /home
+5. Opret en mappe som hedder config under /home/docker
+6. kopier docker-compose filen fra Traefik op på dropletten i /home/docker/config mappen
+7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
+
+# Opsætning af ny container
+1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil - husk at lave de nødvendige ændringer i labels, hvor der står "CHANGEME", samt domain
+2. Opret en mappe under /home/docker med et sigende navn
+3. Kopier docker-compose filen op på dropletten i den nye mappe
+4. Kør kommando'en "docker-compose up -d"
+
+
+

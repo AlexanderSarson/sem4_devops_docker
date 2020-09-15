@@ -38,13 +38,6 @@ services:
     command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
     restart: always
 
-  whoami:
-    image: "containous/whoami"
-    container_name: "simple-pp"
-    environment:
-      - "VIRTUAL_HOST=example.domain.com"
-      - "LETSENCRYPT_HOST=example.domain.com"
-
 volumes:
   conf:
   vhost:

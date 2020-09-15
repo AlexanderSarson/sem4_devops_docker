@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  whoami:
+    image: "containous/whoami"
+    container_name: "simple-pp"
+    environment:
+      - "VIRTUAL_HOST=example.domain.com"
+      - "LETSENCRYPT_HOST=example.domain.com"
+    networks:
+      - dev
+networks:
+  dev:
+    external: true
