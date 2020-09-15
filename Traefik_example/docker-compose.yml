@@ -1,0 +1,40 @@
+version: "2.2"
+
+services:
+
+  traefik:
+    image: "traefik:v2.2"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=EXAMPLE@EXAMPLE.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
+    restart: always
+
+  spark:
+    image: "alexandersarson/sparkjava"
+    scale: 2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.CHANGEME.rule=Host(`example.domain.com`)"
+      - "traefik.http.routers.CHANGEME.entrypoints=websecure"
+      - "traefik.http.routers.CHANGEME.tls.certresolver=myresolver"
