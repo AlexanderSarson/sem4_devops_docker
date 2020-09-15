@@ -14,6 +14,10 @@
 13. lad resten af indstillingerne være standard og scroll ned til bunden og tryk Create Droplet
 
 # Opsætning af domain
+1. Log in på digitalocean.com
+2. Tryk på networking i venstre side
+3. Indtast dit domain i boksen og tryk Add Domain
+4. Under hostname indtast *, vælg den nyoprettet droplet som der skal direct to og tryk på Add Record
 
 
 # Opsætning af docker
