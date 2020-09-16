@@ -26,7 +26,7 @@
 3. Kør kommando'en "docker network create dev"
 4. Opret en mappe som hedder docker under /home
 5. Opret en mappe som hedder config under /home/docker
-6. kopier docker-compose filen fra Traefik op på dropletten i /home/docker/config mappen
+6. kopier docker-compose filen fra Docker_config_Traefik op på dropletten i /home/docker/config mappen
 7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
 
 # Opsætning af ny container
