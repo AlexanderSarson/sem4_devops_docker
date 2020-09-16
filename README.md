@@ -30,7 +30,7 @@
 7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
 
 # Opsætning af ny container
-1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil - husk at lave de nødvendige ændringer i labels, hvor der står "CHANGEME", samt domain
+1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil - husk at lave de nødvendige ændringer i labels, hvor der står SOME_SUB_DOMAIN, samt SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com
 2. Opret en mappe under /home/docker med et sigende navn
 3. Kopier docker-compose filen op på dropletten i den nye mappe
 4. Kør kommando'en "docker-compose up -d"

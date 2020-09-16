@@ -5,8 +5,8 @@ services:
     image: "containous/whoami"
     container_name: "simple-pp"
     environment:
-      - "VIRTUAL_HOST=example.domain.com"
-      - "LETSENCRYPT_HOST=example.domain.com"
+      - "VIRTUAL_HOST=SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com"
+      - "LETSENCRYPT_HOST=SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com"
     networks:
       - dev
 networks:
