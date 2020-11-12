@@ -8,8 +8,7 @@ services:
       - "traefik.http.routers.SOME_SUB_DOMAIN.rule=Host(`SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com`)"
       - "traefik.http.routers.SOME_SUB_DOMAIN.entrypoints=websecure"
       - "traefik.http.routers.SOME_SUB_DOMAIN.tls.certresolver=myresolver"
-    networks:
-      - dev
 networks:
-  dev:
-    external: true
+  default:
+    external:
+      name: dev

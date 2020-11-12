@@ -29,3 +29,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
     restart: always
+networks:
+    default:
+        external:
+            name: dev
