@@ -30,10 +30,15 @@
 7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
 
 # Opsætning af ny container
-1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil - husk at lave de nødvendige ændringer i labels, hvor der står SOME_SUB_DOMAIN, samt SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com
+1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil
+skift følgende:
+* container navn fra "whoami" til det du gerne vil have
+* imagename til det nye image som er pushet op (tag imagename fra dit repository på dockerhub - f.eks name/imagename)
+* SOME_SUB_DOMAIN (dette navn bestemmer du, og skal være unik fra tidligere konfigurationer. Dette er til opsætning af Traefik)
+* SOME_SUB_DOMAIN.MY_DOMAIN_NAME.com (Du bestemmer SOME_SUB_DOMAIN navnet, men Y_DOMAIN_NAME.com skal være det du har oprettet. URL'en her bliver routen du tilgår container på udefra)
 2. Opret en mappe under /home/docker med et sigende navn
 3. Kopier docker-compose filen op på dropletten i den nye mappe
-4. Kør kommando'en "docker-compose up -d"
+4. Kør kommando'en "docker-compose up -d" i den nye mappe
 
 
 
