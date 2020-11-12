@@ -1,14 +1,14 @@
 # Opsætning af droplet
 1. Opret en konto hos digitalocean.com og log in
 2. Tryk på Droplets i fanen i venstre side
-3. Tryk på Create Droplet
+3. Tryk på Create Droplet, eller hvis du har droplet i forvejen, så tryk på create i højre hjørne.
 4. Tryk på fanen Marketplace
 5. Søg efter og vælg Docker
 6. Tjek at Basic plan er valgt
 7. Vælg den mindste droplet - 5$/mo
 8. Vælg Frankfurt datacenter
 9. Tryk på New SSH Key
-10. Kopier public key info ind
+10. Kopier public key info ind (Det forventes at I har en SSH nøgle lokalt på computeren til brug her)
 11. Tryk Add SSH Key
 12. Tjek at den nye SSH Key er valgt
 13. lad resten af indstillingerne være standard og scroll ned til bunden og tryk Create Droplet
@@ -16,17 +16,17 @@
 # Opsætning af domain
 1. Log in på digitalocean.com
 2. Tryk på networking i venstre side
-3. Indtast dit domain i boksen og tryk Add Domain
-4. Under hostname indtast *, vælg den nyoprettet droplet som der skal direct to og tryk på Add Record
+3. Indtast dit domain i boksen og tryk Add Domain, eller hvis du har et domain i forvejen, så klik på dette og slet dine records, som peger på forrige droplet.
+4. Under hostname indtast *, vælg den nyoprettet droplet som der skal direct til og tryk på Add Record
 
 
 # Opsætning af docker
 1. Clone dette repo
 2. Log in på droplet via ssh
-3. Kør kommando'en "docker network create dev"
-4. Opret en mappe som hedder docker under /home
+3. Kør kommando'en "docker network create dev" (kør kommando'en "docker network ls" for at se om netværket er oprettet)
+4. Opret en mappe som hedder docker under /home eller kør "sudo mkdir -p /home/docker/config" og spring step 5 over.
 5. Opret en mappe som hedder config under /home/docker
-6. kopier docker-compose filen fra Docker_config_Traefik op på dropletten i /home/docker/config mappen
+6. kopier docker-compose filen fra Docker_config_Traefik op på dropletten i /home/docker/config mappen (I kan f.eks. bruge filezilla eller scp, hvis I har linux)
 7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
 
 # Opsætning af ny container
