@@ -32,6 +32,6 @@ services:
     command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
     restart: always
 networks:
-    default:
-        external:
-            name: dev
+  default:
+    external:
+      name: dev
