@@ -49,3 +49,8 @@ labels:
       - "com.centurylinklabs.watchtower.enable=false"
 
 I kan se eksempel på dette i traefik konfigurationen
+
+# Load balancing
+Jeg har givet et eksempel på at lave load balancing i en compose fil med en gamle version (2.2), men man kan også load balance i nyere versioner af docker-compose.
+Der skal bruges denne kommando:
+docker-compose up --scale SERVICE_NAME=3 -d
