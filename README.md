@@ -23,11 +23,15 @@
 # Opsætning af docker
 1. Clone dette repo
 2. Log in på droplet via ssh
+3. Kør kommando'en "docker login" og indtast login oplysninger
 3. Kør kommando'en "docker network create dev" (kør kommando'en "docker network ls" for at se om netværket er oprettet)
 4. Opret en mappe som hedder docker under /home eller kør "sudo mkdir -p /home/docker/config" og spring step 5 over.
 5. Opret en mappe som hedder config under /home/docker
 6. kopier docker-compose filen fra Docker_config_Traefik op på dropletten i /home/docker/config mappen (I kan f.eks. bruge filezilla eller scp, hvis I har linux)
 7. kør kommando'en "docker-compose up -d" fra mappen /home/docker/config
+
+Vær ekstra opmærksom på Watchtower konfigurationen med hensyn til "--interval". Lige nu står den til 600, hvilket betyder at den tjekker og henter nye images hver 10. minut.
+Denne indstilling skal vurderes om den skal sættes op eller ned, men husk at man kun har 200 pulls pr 6. time hos DockerHub og 1 container er en pull.
 
 # Opsætning af ny container
 1. brug Example_container_traefik docker-compose filen til at lave en ny docker-compose fil
@@ -40,5 +44,8 @@ skift følgende:
 3. Kopier docker-compose filen op på dropletten i den nye mappe
 4. Kør kommando'en "docker-compose up -d" i den nye mappe
 
+Da man har et max antal pulls per 6. time hos DockerHub, så er det vigtigt at man sætter følgende label på containers, som ikke skal overvåges og opdateres(f.eks databaser):
+labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
-
+I kan se eksempel på dette i traefik konfigurationen

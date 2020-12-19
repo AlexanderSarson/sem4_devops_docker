@@ -22,6 +22,8 @@ services:
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
     restart: always
 
   watchtower:
@@ -29,7 +31,9 @@ services:
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --cleanup # --debug --interval 30 #--debug for verbose logging, --interval xx for custom interval in seconds
+    command: --cleanup --interval 600 #--debug for verbose logging, --interval xx for custom interval in seconds
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
     restart: always
 networks:
   default:
